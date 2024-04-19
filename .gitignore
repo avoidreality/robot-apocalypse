@@ -1,0 +1,19 @@
+# ignore DS_Store
+*.DS_Store
+
+# Visual Studio configuration and cache files
+*.vs/
+
+# Ignore obj/ dir
+obj/ 
+
+# ProjectSettings
+ProjectSettings/
+
+# UserSettings
+UserSettings/
+
+Logs/
+Packages/
+Library/
+
