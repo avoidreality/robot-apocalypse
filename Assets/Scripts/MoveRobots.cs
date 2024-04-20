@@ -5,6 +5,7 @@ using UnityEngine;
 public class MoveRobots : MonoBehaviour
 {
     private float speed = 5.0f;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +15,7 @@ public class MoveRobots : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         transform.Translate(Vector3.back * Time.deltaTime * speed);
     }
 }

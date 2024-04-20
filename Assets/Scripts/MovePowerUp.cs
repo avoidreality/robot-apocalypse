@@ -6,7 +6,7 @@ using System;
 public class MovePowerUp : MonoBehaviour
 {
     public GameObject powerUpPrefab;
-    private float spawnDelay = 15f;
+    private float spawnDelay = 60f;
     private float spawnAreaWidth = 24f;
     private float spawnAreaLength = 8f;
 
@@ -17,7 +17,7 @@ public class MovePowerUp : MonoBehaviour
         Debug.Log("[+] MovePowerUp (HealthPowerUp) Start method called!");
 
 
-        InvokeRepeating("SpawnPowerUp", 5f, spawnDelay);
+        InvokeRepeating("SpawnPowerUp", spawnDelay, spawnDelay);
 
         Debug.Log("[+] InvokeRepeating method called for the HealthPowerUp!");
     }

@@ -61,11 +61,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/Scripts/SpaceShipDeuxExMachina.cs" />
+    <Compile Include="Assets/Scripts/SpawnManager.cs" />
     <Compile Include="Assets/Scripts/MoveForward.cs" />
     <Compile Include="Assets/Scripts/MoveGunPowerUp.cs" />
     <Compile Include="Assets/Scripts/MovePowerUp.cs" />
     <Compile Include="Assets/Scripts/MoveRobots.cs" />
     <Compile Include="Assets/Scripts/PlayerController.cs" />
+    <Compile Include="Assets/Scripts/CollisionDetection.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
