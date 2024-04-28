@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class SpaceShipDeuxExMachina : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+   
+    public GameObject escapeRocket; // Reference to the prefab you want to instantiate
+    public float delayInSeconds = 30f; // Delay before instantiation
+
+    private void Start()
     {
-        
+        StartCoroutine(InstantiateObjectAfterDelay());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator InstantiateObjectAfterDelay()
     {
-        
+        yield return new WaitForSeconds(delayInSeconds);
+
+        // Instantiate the object after the delay
+        Vector3 pos = new Vector3(-2.5f, 5f, -6f);
+        Instantiate(escapeRocket, pos, Quaternion.identity);
     }
 }

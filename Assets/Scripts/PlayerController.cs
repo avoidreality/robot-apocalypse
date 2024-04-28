@@ -11,7 +11,11 @@ public class PlayerController : MonoBehaviour
     public GameObject projectilePrefab;
     private float verticalInput;
     private float zRange = 8.5f;
-    
+
+    public Material skyboxMaterial; // Reference to the skybox material
+
+    private bool isSkyDarkened = false;
+
 
     public Transform projectileSpawnPoint;
 
@@ -85,6 +89,28 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Guns++");
             Destroy(other.gameObject);
         }
+
+        if (other.gameObject.CompareTag("Warp"))
+        {
+            Debug.Log("Warp found");
+            Destroy(other.gameObject);
+            Debug.Log("Player found the warp!");
+            if (!isSkyDarkened)
+            {
+                // Change the skybox color to black
+                RenderSettings.skybox = skyboxMaterial;
+                isSkyDarkened = true;
+            }
+        }
+
+        if (other.gameObject.CompareTag("spaceship"))
+        {
+            Debug.Log("Spaceship found!");
+            Destroy(other.gameObject);
+            Debug.Log("Player wins!");
+        }
+
+       
     }
 
    

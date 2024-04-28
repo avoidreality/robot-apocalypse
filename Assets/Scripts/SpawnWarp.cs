@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class MovePowerUp : MonoBehaviour
+public class SpawnWarp : MonoBehaviour
 {
-    public GameObject powerUpPrefab;
+    public GameObject warpPrefab;
     private float spawnDelay = 120f;
     private float spawnAreaWidth = 24f;
     private float spawnAreaLength = 8f;
@@ -13,34 +13,28 @@ public class MovePowerUp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        Debug.Log("[+] MovePowerUp (HealthPowerUp) Start method called!");
-
-
-        InvokeRepeating("SpawnPowerUp", spawnDelay, spawnDelay);
-
-        Debug.Log("[+] InvokeRepeating method called for the HealthPowerUp!");
+        InvokeRepeating("Spawn_A_Warp", spawnDelay, spawnDelay);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // Debug.Log("MoveGunPowerUp here!");
     }
 
-    void SpawnPowerUp()
+    void Spawn_A_Warp()
     {
-        Debug.Log("[+] Health Power Up Prefab called!");
+        Debug.Log("[+] Spawning a warp!");
         // Generate random position within spawn area
         float randomX = UnityEngine.Random.Range(-spawnAreaWidth / 2f, spawnAreaWidth / 2f);
 
         float randomZ = UnityEngine.Random.Range(-spawnAreaLength / 2f, spawnAreaLength / 2f);
 
         Vector3 randomPosition = new Vector3(randomX, 1.1f, randomZ);
-        Debug.Log("About to Instantiate Health Power Up!");
+        Debug.Log("About to Instantiate Warp!");
 
-        Instantiate(powerUpPrefab, randomPosition, Quaternion.identity);
-        Debug.Log("Health Power Up Instantiated!");
+        Instantiate(warpPrefab, randomPosition, Quaternion.identity);
+        Debug.Log("Warp Prefab Instantiated!");
 
 
     }
