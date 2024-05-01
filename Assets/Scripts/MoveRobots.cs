@@ -17,5 +17,10 @@ public class MoveRobots : MonoBehaviour
     {
        
         transform.Translate(Vector3.back * Time.deltaTime * speed);
+
+        if (transform.position.z < -15)
+        {
+            Destroy(gameObject);
+        }
     }
 }

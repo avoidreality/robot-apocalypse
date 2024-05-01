@@ -9,6 +9,7 @@ public class MovePowerUp : MonoBehaviour
     private float spawnDelay = 120f;
     private float spawnAreaWidth = 24f;
     private float spawnAreaLength = 8f;
+    private float powerUpDuration = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -39,8 +40,10 @@ public class MovePowerUp : MonoBehaviour
         Vector3 randomPosition = new Vector3(randomX, 1.1f, randomZ);
         Debug.Log("About to Instantiate Health Power Up!");
 
-        Instantiate(powerUpPrefab, randomPosition, Quaternion.identity);
+        GameObject healthPower = Instantiate(powerUpPrefab, randomPosition, Quaternion.identity);
         Debug.Log("Health Power Up Instantiated!");
+
+        Destroy(healthPower, powerUpDuration);
 
 
     }

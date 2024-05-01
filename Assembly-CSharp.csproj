@@ -66,6 +66,7 @@
     <Compile Include="Assets/Scripts/MoveForward.cs" />
     <Compile Include="Assets/Scripts/MoveGunPowerUp.cs" />
     <Compile Include="Assets/Scripts/MovePowerUp.cs" />
+    <Compile Include="Assets/Scripts/ScrollGround.cs" />
     <Compile Include="Assets/Scripts/MoveRobots.cs" />
     <Compile Include="Assets/Scripts/PlayerController.cs" />
     <Compile Include="Assets/Scripts/CollisionDetection.cs" />

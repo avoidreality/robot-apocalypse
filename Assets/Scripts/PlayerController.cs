@@ -65,6 +65,8 @@ public class PlayerController : MonoBehaviour
             Instantiate(projectilePrefab, projectileSpawnPoint.position, projectilePrefab.transform.rotation);
             Debug.Log("Spacebar pressed...");
 
+            
+
         }
 
     }

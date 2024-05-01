@@ -18,7 +18,7 @@ public class SpaceShipDeuxExMachina : MonoBehaviour
         yield return new WaitForSeconds(delayInSeconds);
 
         // Instantiate the object after the delay
-        Vector3 pos = new Vector3(-2.5f, 5f, -6f);
+        Vector3 pos = new Vector3(-2.5f, 5f, 5f);
         Instantiate(escapeRocket, pos, Quaternion.identity);
     }
 }
