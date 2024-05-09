@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 4162000909944125337}
   - component: {fileID: 6131166487406882124}
   - component: {fileID: -5981923117483618775}
+  - component: {fileID: -7386446495156413249}
   m_Layer: 0
-  m_Name: Gun_Power_Up
+  m_Name: Gun_Power_Up-PreF
   m_TagString: GunPowerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 7763063073243274889}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.8, y: 1.01, z: 0.1}
+  m_LocalPosition: {x: -19.77, y: 1.01, z: 21.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -149,3 +150,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-7386446495156413249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7763063073243274889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a4f7b7d9c1a4d4096fb8ba5936408c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

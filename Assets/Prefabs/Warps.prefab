@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7639657347910854859}
   - component: {fileID: 5473515399513695318}
   - component: {fileID: 4789689978993473180}
-  - component: {fileID: 6025221211971664565}
+  - component: {fileID: -5893951304642216882}
   m_Layer: 0
   m_Name: Warps
   m_TagString: Warp
@@ -107,7 +107,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &6025221211971664565
+--- !u!114 &-5893951304642216882
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,7 +116,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 98034936533337989}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f94fd2ff45cc41a288f5b34572bca4b, type: 3}
+  m_Script: {fileID: 11500000, guid: f4a4f7b7d9c1a4d4096fb8ba5936408c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  warpPrefab: {fileID: 98034936533337989}

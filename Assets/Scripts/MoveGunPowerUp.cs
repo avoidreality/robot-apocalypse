@@ -6,7 +6,7 @@ using System;
 public class MoveGunPowerUp : MonoBehaviour
 {
     public GameObject gunPowerUpPrefab;
-    private float spawnDelay = 30f;
+    private float spawnDelay = 5f;
     private float spawnAreaWidth = 24f;
     private float spawnAreaLength = 8f;
     private float powerUpDuration = 10f;
@@ -25,17 +25,17 @@ public class MoveGunPowerUp : MonoBehaviour
 
     void SpawnPowerUp()
     {
-        Debug.Log("[+] PowerUp Prefab called!");
+        Debug.Log("[+] Gun PowerUp Prefab called!");
         // Generate random position within spawn area
         float randomX = UnityEngine.Random.Range(-spawnAreaWidth / 2f, spawnAreaWidth / 2f);
 
         float randomZ = UnityEngine.Random.Range(-spawnAreaLength / 2f, spawnAreaLength / 2f);
 
         Vector3 randomPosition = new Vector3(randomX, 1.1f, randomZ);
-        Debug.Log("About to Instantiate PowerUp!");
+        Debug.Log("[+] About to Instantiate Gun PowerUp!");
 
         GameObject newGunPowerUp = Instantiate(gunPowerUpPrefab, randomPosition, Quaternion.identity);
-        Debug.Log("PowerUp Instantiated!");
+        Debug.Log("[+] Gun PowerUp Instantiated!");
 
         Destroy(newGunPowerUp, powerUpDuration);
 
