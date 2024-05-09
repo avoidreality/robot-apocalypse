@@ -4,10 +4,9 @@
 
 Hello World!
 
-Thanks for visiting my repository. This is my first game to create with Unity3D and I hope this is not the last game. 
+Thanks for visiting my repository. This is my first game to create with Unity3D. This is my primate reaction to the AI revolution. Though helpful I fear AI has taken my job and is going to melt my brain. I know that AI has made my life easier however. For instance, chatGPT helped me with making pieces of this game. In the game you get to destroy AI robots trying to take over the Earth! This is not a brainy chess game even though the default floor is a checker-board I created with GIMP (GNU Image Manipulation Program). 
 
-The game in it's current state might  overload your random access memory (RAM). This is because objects are instantiated endlessly into infinity. But maybe not asI made some changes decreasing the amount of power-ups spawned. 
-
-To play the game import 1 of the  unitypackage files. The version created on 4/18/2024 will spawn an incredible amount of powerups that could kill your computerfrom all the RAM used up by object instantiation. 
+The game is about 90% complete. To test the game load the 5-9-2024-90PercentComplete-RobotApocalypse.unitypackage in your Unity instance please. Earlier versions of the game are also available. 
+In the present incarnation the robots are just large red rectangles. :D I need to add to the game so the robots look more like a robot. 
 
 Peace, Happy and Game On! 
