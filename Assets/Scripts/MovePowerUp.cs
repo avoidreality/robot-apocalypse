@@ -5,30 +5,26 @@ using System;
 
 public class MovePowerUp : MonoBehaviour
 {
-    
+    private float speed = 5.0f;
 
     // Start is called before the first frame update
     void Start()
     {
 
-        Debug.Log("[+] MovePowerUp (HealthPowerUp) Start method called!");
-
-
-       
-
-        Debug.Log("[+] InvokeRepeating method called for the HealthPowerUp!");
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Translate(Vector3.back * Time.deltaTime * speed);
+
+        if (transform.position.z < -15)
+        {
+            Destroy(gameObject);
+        }
+
     }
 
-    void SpawnPowerUp()
-    {
-        
-
-
-    }
+   
 }

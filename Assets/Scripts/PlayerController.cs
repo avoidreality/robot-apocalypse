@@ -13,10 +13,14 @@ public class PlayerController : MonoBehaviour
     private float zBottomRange = -13.5f;
     private float zTopRange = 1.5f;
 
-    public Material initialMaterial; // Initial material of the floor
-    public Material alternateMaterial; // Material to switch to
+    //public Material initialMaterial; // Initial material of the floor
+    // public Material alternateMaterial; // Material to switch to
+    public Material initialMaterial;
+    public Material alternateMaterial;
     private bool isAlternate = false; // track current floor material state 
 
+    public GameObject spaceship;
+    private SpaceShipDeuxExMachina spaceShipDeuxExMachina;
 
     public Transform projectileSpawnPoint;
 
@@ -24,6 +28,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
+        spaceShipDeuxExMachina = spaceship.GetComponentInChildren<SpaceShipDeuxExMachina>();
+        
     }
 
     void KeepPlayerInBoundaries()
@@ -116,7 +122,8 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("spaceship"))
         {
             Debug.Log("Spaceship found!");
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject);
+            spaceShipDeuxExMachina.setAcquired(true);
             Debug.Log("Player wins!");
         }
 
