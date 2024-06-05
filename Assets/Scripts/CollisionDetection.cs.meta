@@ -3,7 +3,15 @@ guid: 009c35c42a3a641ea98ef51dffcf393e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - explosionprefab: {fileID: 1220471986098533783, guid: fc3d86248f2044344b797fcdfb7b43ec, type: 3}
+  - rubblePrefab: {fileID: 191186, guid: 079954accd64b32419ec069129c81273, type: 3}
+  - player_death: {fileID: 8300000, guid: 74ea0a69dbbf0428f8ccb32a3689ec90, type: 3}
+  - robot_death: {instanceID: 0}
+  - boom6: {instanceID: 0}
+  - AudioSource1: {fileID: 7149688318344095629, guid: 6addf5f628abb4ab4b9da51a2b07467e, type: 3}
+  - spaceship: {instanceID: 0}
+  - EscapeRocket: {fileID: 920605536824173880, guid: 0c148c04772d64733bc7f542c911927f, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

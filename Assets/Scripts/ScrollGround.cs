@@ -4,10 +4,12 @@ public class ScrollGround : MonoBehaviour
 {
     public float scrollSpeed = 0.5f; // Speed of the scrolling
     private Renderer groundRenderer;
+   
 
     void Start()
     {
         groundRenderer = GetComponent<Renderer>();
+       
     }
 
     void Update()
@@ -19,4 +21,6 @@ public class ScrollGround : MonoBehaviour
         Vector2 offsetVector = new Vector2(0, offset);
         groundRenderer.material.mainTextureOffset = offsetVector;
     }
+
+   
 }

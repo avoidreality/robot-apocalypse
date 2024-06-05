@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -6224455709419159199}
   m_Layer: 0
   m_Name: Robot_Enemy2
-  m_TagString: Robot
+  m_TagString: Robot_Alpha
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,7 +207,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6657047723286198647, guid: f04c58daee6db1249bcf169b6cf13c45, type: 3}
       propertyPath: m_TagString
-      value: Robot
+      value: Robot_Alpha
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -260,6 +260,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionprefab: {fileID: 1220471986098533783, guid: fc3d86248f2044344b797fcdfb7b43ec, type: 3}
   rubblePrefab: {fileID: 191186, guid: 079954accd64b32419ec069129c81273, type: 3}
+  fireworksPrefabs:
+  - {fileID: 1220471986098533783, guid: fc3d86248f2044344b797fcdfb7b43ec, type: 3}
+  - {fileID: 100748, guid: cd4d7020429cde74db076ffa72495419, type: 3}
+  - {fileID: 110790, guid: 0f75f6db4a318f54382e0c98b2226db8, type: 3}
+  - {fileID: 1220471986098533783, guid: fc3d86248f2044344b797fcdfb7b43ec, type: 3}
+  player_death: {fileID: 8300000, guid: 74ea0a69dbbf0428f8ccb32a3689ec90, type: 3}
+  robot_death: {fileID: 8300000, guid: c48a2cb005c3740479e41b9df734b2ad, type: 3}
+  boom6: {fileID: 0}
+  bump: {fileID: 0}
+  AudioSource1: {fileID: 7149688318344095629, guid: 6addf5f628abb4ab4b9da51a2b07467e, type: 3}
+  game_over: 0
+  spaceship: {fileID: 0}
+  EscapeRocket: {fileID: 920605536824173880, guid: 0c148c04772d64733bc7f542c911927f, type: 3}
 --- !u!4 &1978400419631540838 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6280627084561458125, guid: f04c58daee6db1249bcf169b6cf13c45, type: 3}

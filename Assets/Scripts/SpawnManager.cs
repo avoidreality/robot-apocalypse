@@ -9,36 +9,68 @@ public class SpawnManager : MonoBehaviour
     private float spawnPosZ = 20;
     private float startDelay = 1;
     private float spawnInterval = 5.5f;
-
+    public AudioSource ghettoblaster;
+   
 
     public GameObject warpPrefab;
     private float spawnDelayWarp = 10f;
     private float spawnAreaWidthWarp = 24f;
 
     public GameObject[] powerUpPrefabs;
-    private float spawnDelayPowerUp = 30f;
+    private float spawnDelayPowerUp = 5f;
     private float spawnAreaWidthPowerUp = 24f;
-    private float spawnAreaUpperPowerUp = 1.5f;
-    private float spawnAreaLowerPowerUp = -10f;
+    private float spawnAreaUpperPowerUp = 15f;
+    private float spawnAreaLowerPowerUp = 9f;
     private float powerUpDurationPowerUp = 10f;
 
     public GameObject escapeRocket; // Reference to the prefab you want to instantiate
     public float delayInSecondsRocket = 3f; // Delay before instantiation
     private static bool objectInstantiatedRocket = false;
+    public GameManager spawn_game_manager;
 
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnRobot", startDelay, spawnInterval);
-        InvokeRepeating("Spawn_A_Warp", spawnDelayWarp, spawnDelayWarp);
-        InvokeRepeating("SpawnPowerups", spawnDelayPowerUp, spawnDelayPowerUp);
-        StartCoroutine(InstantiateSpaceshipAfterDelay());
+        spawn_game_manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+ 
+        Debug.Log("Game is active!");
+        ghettoblaster.volume = 0.5f;
+        ghettoblaster.Play();
+    }
+
+    public void setRocketInst(bool b)
+    {
+        objectInstantiatedRocket = b;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+      
+    }
+
+    public void StartGame()
+    {
+        Debug.Log("SpawnManager.StartGame() called!");
+        if (spawn_game_manager.isGameActive)
+        {
+            InvokeRepeating("SpawnRobot", startDelay, spawnInterval);
+            InvokeRepeating("Spawn_A_Warp", spawnDelayWarp, spawnDelayWarp);
+            InvokeRepeating("SpawnPowerups", spawnDelayPowerUp, spawnDelayPowerUp);
+            
+        }
+    }
+
+    public IEnumerator SpawnGameObjects(float spawnInterval)
+    {
+        while (spawn_game_manager.isGameActive)
+        {
+            Debug.Log("Spawning game objects every: " + spawnInterval);
+            yield return new WaitForSeconds(spawnInterval);
+            SpawnRobot();
+            SpawnPowerups();
+            Spawn_A_Warp();
+        }
     }
 
     void SpawnRobot()
@@ -66,14 +98,14 @@ public class SpawnManager : MonoBehaviour
 
 
     // This code spawns the escape rocket after a certain number of seconds have passed 
-    IEnumerator InstantiateSpaceshipAfterDelay()
+    public IEnumerator InstantiateSpaceshipAfterDelay()
     {
         yield return new WaitForSeconds(delayInSecondsRocket);
 
         if (!objectInstantiatedRocket)
         {
             // Instantiate the object after the delay
-            Vector3 pos = new Vector3(-2.5f, 5f, 0f);
+            Vector3 pos = new Vector3(-2.5f, 2f, 5f);
             Instantiate(escapeRocket, pos, Quaternion.identity);
 
 
@@ -85,17 +117,17 @@ public class SpawnManager : MonoBehaviour
 
     void Spawn_A_Warp()
     {
-        Debug.Log("[+] Spawning a warp!");
+        // Debug.Log("[+] Spawning a warp!");
         // Generate random position within spawn area
         float randomX = UnityEngine.Random.Range(-spawnAreaWidthWarp / 2f, spawnAreaWidthWarp / 2f);
 
         float randomZ = UnityEngine.Random.Range(-6f, 1.5f);
 
         Vector3 randomPosition = new Vector3(randomX, 1.1f, randomZ);
-        Debug.Log("About to Instantiate Warp!");
+        // Debug.Log("About to Instantiate Warp!");
 
         var new_warp = Instantiate(warpPrefab, randomPosition, Quaternion.identity);
-        Debug.Log("Warp Prefab Instantiated!");
+        // Debug.Log("Warp Prefab Instantiated!");
 
         Destroy(new_warp, 15f); // Destroy the warp after 15 seconds
     }

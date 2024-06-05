@@ -164,8 +164,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionprefab: {fileID: 1220471986098533783, guid: fc3d86248f2044344b797fcdfb7b43ec, type: 3}
-  blueFireworks: {fileID: 19886120, guid: 5702e2a6fea804b45b49b70d8feaf7ae, type: 3}
-  Rubble: {fileID: 19821056, guid: 079954accd64b32419ec069129c81273, type: 3}
+  rubblePrefab: {fileID: 191186, guid: 079954accd64b32419ec069129c81273, type: 3}
+  fireworksPrefabs:
+  - {fileID: 110790, guid: 0f75f6db4a318f54382e0c98b2226db8, type: 3}
+  - {fileID: 100748, guid: cd4d7020429cde74db076ffa72495419, type: 3}
+  - {fileID: 120410, guid: 6636b3078b0905e489f698a11b7a6b6b, type: 3}
+  - {fileID: 1220471986098533783, guid: fc3d86248f2044344b797fcdfb7b43ec, type: 3}
+  player_death: {fileID: 8300000, guid: 74ea0a69dbbf0428f8ccb32a3689ec90, type: 3}
+  robot_death: {fileID: 8300000, guid: 2a921313c927f45238a0b8baabe3ab12, type: 3}
+  boom6: {fileID: 8300000, guid: af2b012ecebc34a91b65a0351bd46cc7, type: 3}
+  AudioSource1: {fileID: 6534499805370055510, guid: 867a8ec68c9364736b643c4b4d3791b9, type: 3}
+  game_over: 0
+  spaceship: {fileID: 0}
+  EscapeRocket: {fileID: 920605536824173880, guid: 0c148c04772d64733bc7f542c911927f, type: 3}
 --- !u!1001 &2795114682555860194
 PrefabInstance:
   m_ObjectHideFlags: 0
