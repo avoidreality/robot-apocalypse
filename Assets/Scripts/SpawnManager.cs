@@ -26,7 +26,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject escapeRocket; // Reference to the prefab you want to instantiate
     public float delayInSecondsRocket = 3f; // Delay before instantiation
     private static bool objectInstantiatedRocket = false;
-    public GameManager spawn_game_manager;
+    private GameManager spawn_game_manager;
 
     // Start is called before the first frame update
     void Start()

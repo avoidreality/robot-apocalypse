@@ -278,3 +278,4 @@ MonoBehaviour:
   game_over: 0
   spaceship: {fileID: 0}
   EscapeRocket: {fileID: 920605536824173880, guid: 0c148c04772d64733bc7f542c911927f, type: 3}
+  RobotEnemy2: {fileID: 5665004855376601022, guid: f5cd0f6c20ccd44e7b2e8f8284068429, type: 3}

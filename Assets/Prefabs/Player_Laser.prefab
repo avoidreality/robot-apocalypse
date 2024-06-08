@@ -173,10 +173,12 @@ MonoBehaviour:
   player_death: {fileID: 8300000, guid: 74ea0a69dbbf0428f8ccb32a3689ec90, type: 3}
   robot_death: {fileID: 8300000, guid: 2a921313c927f45238a0b8baabe3ab12, type: 3}
   boom6: {fileID: 8300000, guid: af2b012ecebc34a91b65a0351bd46cc7, type: 3}
+  bump: {fileID: 0}
   AudioSource1: {fileID: 6534499805370055510, guid: 867a8ec68c9364736b643c4b4d3791b9, type: 3}
   game_over: 0
   spaceship: {fileID: 0}
   EscapeRocket: {fileID: 920605536824173880, guid: 0c148c04772d64733bc7f542c911927f, type: 3}
+  RobotEnemy2: {fileID: 5665004855376601022, guid: f5cd0f6c20ccd44e7b2e8f8284068429, type: 3}
 --- !u!1001 &2795114682555860194
 PrefabInstance:
   m_ObjectHideFlags: 0

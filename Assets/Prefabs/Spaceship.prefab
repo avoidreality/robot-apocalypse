@@ -425,10 +425,12 @@ MonoBehaviour:
   player_death: {fileID: 8300000, guid: 74ea0a69dbbf0428f8ccb32a3689ec90, type: 3}
   robot_death: {fileID: 8300000, guid: 9c87f285d32fa4569b77ddf3a7e6df5e, type: 3}
   boom6: {fileID: 8300000, guid: af2b012ecebc34a91b65a0351bd46cc7, type: 3}
+  bump: {fileID: 0}
   AudioSource1: {fileID: 7149688318344095629, guid: 6addf5f628abb4ab4b9da51a2b07467e, type: 3}
   game_over: 0
   spaceship: {fileID: 0}
   EscapeRocket: {fileID: 920605536824173880}
+  RobotEnemy2: {fileID: 5665004855376601022, guid: f5cd0f6c20ccd44e7b2e8f8284068429, type: 3}
 --- !u!4 &8380508954020843145 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 490624, guid: 982b7ba9f968b034bbe79438e0a07425, type: 3}

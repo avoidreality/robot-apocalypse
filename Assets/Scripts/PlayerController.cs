@@ -6,9 +6,10 @@ public class PlayerController : MonoBehaviour
 {
     private float horizontalInput;
     private float forwardInput;
-    private float speed = 5.0f;
+    private float speed = 10.0f;
     private Rigidbody playerRb;
-    private float xRange = 24;
+    private float stage_right_xRange = 22;
+    private float stage_left_xRange = -34;
     public GameObject[] projectilePrefab;
     private int gun_number = 0;
     private GameObject current_gun;
@@ -61,7 +62,7 @@ public class PlayerController : MonoBehaviour
     void KeepPlayerInBoundaries()
     {
         // Keep the player in the boundaries of the game
-        float clampedX = Mathf.Clamp(transform.position.x, -xRange, xRange);
+        float clampedX = Mathf.Clamp(transform.position.x, stage_left_xRange, stage_right_xRange);
         float clampedZ = Mathf.Clamp(transform.position.z, zBottomRange, zTopRange);
         float clampedY = Mathf.Clamp(transform.position.y, yBottomRange, yTopRange);
        
@@ -179,8 +180,8 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             sounds.PlayOneShot(gun_power_up, 1.0f);
             gun_number += 1;
-            if (gun_number > 2) {
-                gun_number = 2; // stay at the last gun until player obliteration 
+            if (gun_number >= projectilePrefab.Length) {
+                gun_number = projectilePrefab.Length - 1; // stay at the last gun until player obliteration 
             }
             current_gun = projectilePrefab[gun_number];
             Debug.Log("current_gun = " + current_gun);

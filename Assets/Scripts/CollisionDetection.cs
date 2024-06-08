@@ -20,6 +20,8 @@ public class CollisionDetection : MonoBehaviour
     public GameObject EscapeRocket;
     private GameManager gamemanager1;
     private BlinkJet jet;
+    public GameObject RobotEnemy2;
+    private HitCounter hits; 
    
     // Start is called before the first frame update
     void Start()
@@ -58,8 +60,9 @@ public class CollisionDetection : MonoBehaviour
         if (gamemanager1.game_over == false) // prevent a null pointer exception when the jet is destroyed but the game is still runnning. 
         {
             jet = GameObject.Find("Fighter_Jet04").GetComponent<BlinkJet>();
-        } 
-        
+        }
+
+        hits = RobotEnemy2.GetComponent<HitCounter>();
      
         
     }
@@ -75,7 +78,7 @@ public class CollisionDetection : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (gameObject.CompareTag("Player") && (other.CompareTag("Robot_Alpha") || other.CompareTag("Robot_Beta"))) // if an object collides with the player the game is over or now the player loses a point
+        if (gameObject.CompareTag("Player") && (other.CompareTag("Robot_Alpha") || other.CompareTag("Robot_Beta") || other.CompareTag("Burning_Skull"))) // if an object collides with the player the game is over or now the player loses a point
         {
            Debug.Log("Player hit by " + other.gameObject.name + " !");
             gamemanager1.UpdateHealth(1);
@@ -163,7 +166,7 @@ public class CollisionDetection : MonoBehaviour
         }
 
         */
-        
+
         if (other.CompareTag("Laser") && gameObject.CompareTag("Robot_Alpha"))
         {
             Debug.Log("Robot_Alpa was hit by: " + other.name);
@@ -171,9 +174,14 @@ public class CollisionDetection : MonoBehaviour
             GameObject rubble = Instantiate(fireworksPrefabs[0], gameObject.transform.position, gameObject.transform.rotation);
             Destroy(rubble, 5);
             //Destroy(explosion_inst, 5);
-            Destroy(gameObject);
+            hits.directHit(); // removes 1 
+            if (hits.getHits() == 0)
+            {
+                Destroy(gameObject);
+            }
             Destroy(other.gameObject);
             gamemanager1.UpdateScore(10);
+
         } else if (other.CompareTag("Laser") && gameObject.CompareTag("Robot_Beta"))
         {
             Debug.Log("Robot_Beta was hit by: " + other.name);
@@ -182,9 +190,30 @@ public class CollisionDetection : MonoBehaviour
             Destroy(rubble, 5);
             //Destroy(explosion_inst, 5);
             Destroy(gameObject);
-            gamemanager1.UpdateScore(5);
-            
-            
+            gamemanager1.UpdateScore(15);
+
+
+        }
+        else if (other.CompareTag("Laser") && gameObject.CompareTag("Robot_Shooter"))
+        {
+            Debug.Log("Robot_Shooter was hit by: " + other.name);
+            //GameObject explosion_inst = Instantiate(explosionprefab, gameObject.transform.position, gameObject.transform.rotation);
+            GameObject rubble = Instantiate(rubblePrefab, gameObject.transform.position, gameObject.transform.rotation);
+            Destroy(rubble, 5);
+            //Destroy(explosion_inst, 5);
+            Destroy(gameObject);
+            gamemanager1.UpdateScore(15);
+
+
+        }
+        else if (other.CompareTag("Laser") && gameObject.CompareTag("Burning_Skull")) {
+
+            Debug.Log("Burning Skull was hit by: " + other.name);
+            GameObject rubble = Instantiate(fireworksPrefabs[0], gameObject.transform.position, gameObject.transform.rotation);
+            Destroy(rubble, 5);
+            Destroy(gameObject);
+            gamemanager1.UpdateScore(20);
+
         } else if (other.CompareTag("Robot_Weapon_1") && gameObject.CompareTag("Player"))
         {
             Debug.Log("Player hit by robot weapon!");
