@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2413499966264628463}
   - component: {fileID: -8780594074157354931}
   - component: {fileID: 4707593663270707937}
-  - component: {fileID: -880005178779024774}
+  - component: {fileID: 9189459499142822855}
   m_Layer: 0
   m_Name: Ball_Eye_Robot_Weapon
   m_TagString: Robot_Weapon_1
@@ -149,7 +149,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-880005178779024774
+--- !u!114 &9189459499142822855
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,17 +158,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 2720400915110404243}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 009c35c42a3a641ea98ef51dffcf393e, type: 3}
+  m_Script: {fileID: 11500000, guid: ec8a7b9a029d442a5b3f7545dfdfa59f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   explosionprefab: {fileID: 1220471986098533783, guid: fc3d86248f2044344b797fcdfb7b43ec, type: 3}
   rubblePrefab: {fileID: 191186, guid: 079954accd64b32419ec069129c81273, type: 3}
-  fireworksPrefabs: []
+  fireworksPrefabs:
+  - {fileID: 191186, guid: 079954accd64b32419ec069129c81273, type: 3}
+  - {fileID: 120410, guid: 6636b3078b0905e489f698a11b7a6b6b, type: 3}
+  - {fileID: 100748, guid: cd4d7020429cde74db076ffa72495419, type: 3}
+  - {fileID: 191186, guid: 079954accd64b32419ec069129c81273, type: 3}
   player_death: {fileID: 8300000, guid: 74ea0a69dbbf0428f8ccb32a3689ec90, type: 3}
-  robot_death: {fileID: 0}
-  boom6: {fileID: 0}
-  bump: {fileID: 0}
-  AudioSource1: {fileID: 7149688318344095629, guid: 6addf5f628abb4ab4b9da51a2b07467e, type: 3}
+  robot_death: {fileID: 8300000, guid: ab50d2aab3a5c4b51996bae9d659b5a9, type: 3}
+  boom6: {fileID: 8300000, guid: af2b012ecebc34a91b65a0351bd46cc7, type: 3}
+  bump: {fileID: 8300000, guid: c48a2cb005c3740479e41b9df734b2ad, type: 3}
   game_over: 0
   spaceship: {fileID: 0}
   EscapeRocket: {fileID: 920605536824173880, guid: 0c148c04772d64733bc7f542c911927f, type: 3}

@@ -24,6 +24,7 @@ public class BlinkJet : MonoBehaviour
             elapsedTime += blinkInterval;
         }
         cr.enabled = true;
+        
 
     }
 

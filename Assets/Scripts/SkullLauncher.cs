@@ -12,6 +12,8 @@ public class SkullLauncher : MonoBehaviour
     public GameObject explosionPrefab;
     private AudioSource skull_radio;
     public AudioClip explosion_sound;
+    private GameManager gamemanager;
+    bool to_be_destroyed = false;
 
     // Reference to the Rigidbody component
     private Rigidbody rb;
@@ -30,6 +32,7 @@ public class SkullLauncher : MonoBehaviour
         float randomY = Random.Range(bottom, top);
         transform.position = new Vector3(randomX, randomY, startZ);
         skull_radio = GetComponent<AudioSource>();
+        gamemanager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
 
         // Launch the GameObject with a straight vector towards z = 0
@@ -51,9 +54,15 @@ public class SkullLauncher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.z < -20)
+        if (!to_be_destroyed)
         {
-            Destroy(gameObject);
+            if (transform.position.z < -50)
+            {
+                Destroy(gameObject);
+                // gamemanager.UpdateHealth(1); // remove 1 health if the burning skull flies past the player
+                // Debug.Log(gameObject.name + " got passed player. Subtracting 1 from health");
+
+            }
         }
     }
 
@@ -66,9 +75,15 @@ public class SkullLauncher : MonoBehaviour
             skull_radio.PlayOneShot(explosion_sound, .5f);
             // Implement your logic here, e.g., destroy the skull or apply damage
             Instantiate(explosionPrefab, gameObject.transform.position, gameObject.transform.rotation);
-            
+            gamemanager.HitData("Burning Skull");
+            gamemanager.UpdateScore(20);
             Destroy(gameObject);
            
         }
+    }
+
+    public void setForDestruction()
+    {
+        to_be_destroyed = true;
     }
 }

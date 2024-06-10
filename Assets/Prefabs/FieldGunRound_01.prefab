@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 480310}
   - component: {fileID: 3304878}
   - component: {fileID: 2311954}
-  - component: {fileID: -4298986482994617479}
-  - component: {fileID: -6349549754919592507}
-  - component: {fileID: 874676128792870655}
+  - component: {fileID: -6964108057056430487}
+  - component: {fileID: 7610177863060919786}
+  - component: {fileID: 8185802260689206982}
+  - component: {fileID: 7970048988787921916}
   m_Layer: 0
   m_Name: FieldGunRound_01
   m_TagString: Laser
@@ -29,13 +30,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 189306}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalRotation: {x: -0.00000011651272, y: -0.698968, z: -0.715153, w: -0.00000011387581}
+  m_LocalPosition: {x: -76.7, y: 1.3214303, z: 5.890624}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -91.311, y: 180.001, z: -0.0010070801}
 --- !u!33 &3304878
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -86,7 +87,43 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &-4298986482994617479
+--- !u!114 &-6964108057056430487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 895033c46c4b84b9ca226f9ad346378c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 30
+--- !u!136 &7610177863060919786
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189306}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.12838063
+  m_Height: 1.0000015
+  m_Direction: 1
+  m_Center: {x: -1.2434513e-14, y: 0.5000007, z: -0.00000011175885}
+--- !u!54 &8185802260689206982
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,30 +150,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &-6349549754919592507
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 189306}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.15725173
-  m_Height: 1.0422064
-  m_Direction: 1
-  m_Center: {x: -0.011631227, y: 0.47889805, z: 0.000000051740223}
---- !u!114 &874676128792870655
+--- !u!114 &7970048988787921916
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,7 +159,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 189306}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 895033c46c4b84b9ca226f9ad346378c, type: 3}
+  m_Script: {fileID: 11500000, guid: ec8a7b9a029d442a5b3f7545dfdfa59f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
+  explosionprefab: {fileID: 1220471986098533783, guid: fc3d86248f2044344b797fcdfb7b43ec, type: 3}
+  rubblePrefab: {fileID: 191186, guid: 079954accd64b32419ec069129c81273, type: 3}
+  fireworksPrefabs:
+  - {fileID: 191186, guid: 079954accd64b32419ec069129c81273, type: 3}
+  - {fileID: 120410, guid: 6636b3078b0905e489f698a11b7a6b6b, type: 3}
+  - {fileID: 100748, guid: cd4d7020429cde74db076ffa72495419, type: 3}
+  - {fileID: 191186, guid: 079954accd64b32419ec069129c81273, type: 3}
+  player_death: {fileID: 8300000, guid: 74ea0a69dbbf0428f8ccb32a3689ec90, type: 3}
+  robot_death: {fileID: 8300000, guid: ab50d2aab3a5c4b51996bae9d659b5a9, type: 3}
+  boom6: {fileID: 8300000, guid: af2b012ecebc34a91b65a0351bd46cc7, type: 3}
+  bump: {fileID: 8300000, guid: c48a2cb005c3740479e41b9df734b2ad, type: 3}
+  game_over: 0
+  spaceship: {fileID: 0}
+  EscapeRocket: {fileID: 920605536824173880, guid: 0c148c04772d64733bc7f542c911927f, type: 3}
+  RobotEnemy2: {fileID: 5665004855376601022, guid: f5cd0f6c20ccd44e7b2e8f8284068429, type: 3}

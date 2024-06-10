@@ -9,7 +9,7 @@ public class RobotShooter : MonoBehaviour
     public GameObject weapon;
     private AudioSource robot_murderer_sound;
     public AudioClip robot_gunfire;
-    private float shootInterval = 2.0f;
+    private float shootInterval = 1.5f;
     private bool shoot = true;
     private Coroutine shootCoroutine;
 
@@ -33,7 +33,10 @@ public class RobotShooter : MonoBehaviour
     {
         Debug.Log("Robot shooting!");
 
-        GameObject projectile = Instantiate(weapon, transform.position, weapon.transform.rotation);
+        if (weapon != null && shoot == true)
+        {
+            GameObject projectile = Instantiate(weapon, transform.position, weapon.transform.rotation);
+        }
 
         robot_murderer_sound.PlayOneShot(robot_gunfire, 1.0f);
 
@@ -43,7 +46,7 @@ public class RobotShooter : MonoBehaviour
     {
         while (shoot)
         {
-            Shoot();
+           
             for (float timer = 0; timer < shootInterval; timer += Time.deltaTime / 2)
             {
                 if (!shoot)
@@ -53,6 +56,7 @@ public class RobotShooter : MonoBehaviour
                 }
                 yield return null;
             }
+            Shoot();
             yield return new WaitForSeconds(shootInterval);
         }
 
@@ -69,6 +73,8 @@ public class RobotShooter : MonoBehaviour
             StopCoroutine(shootCoroutine);
         }
         Debug.Log("Shooting robot obliterated");
+        Debug.Log("Setting the weapon to null");
+        weapon = null;
     }
 
 

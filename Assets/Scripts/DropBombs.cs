@@ -60,6 +60,7 @@ public class DropBombs : MonoBehaviour
         if (other.CompareTag("Robot_Alpha") || other.CompareTag("Robot_Beta") || other.CompareTag("Burning_Skull"))
         {
             gamemanager.UpdateScore(50);
+            gamemanager.HitData(other.name);
             Destroy(other.gameObject);
             Debug.Log("Bomb destroyed: " + other.gameObject);
             int index = Random.Range(0, hit_sounds.Length);

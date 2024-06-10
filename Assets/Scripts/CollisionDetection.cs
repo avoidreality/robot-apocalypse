@@ -14,7 +14,7 @@ public class CollisionDetection : MonoBehaviour
     public AudioClip robot_death;
     public AudioClip boom6;
     public AudioClip bump;
-    public AudioSource AudioSource1;
+    private AudioSource AudioSource1;
     public bool game_over = false;
     public SpaceShipDeuxExMachina spaceship;
     public GameObject EscapeRocket;
@@ -67,6 +67,15 @@ public class CollisionDetection : MonoBehaviour
         
     }
 
+    void PrintHierarchy(Transform obj)
+    {
+        Debug.Log(obj.name);
+        foreach (Transform child in obj)
+        {
+            PrintHierarchy(child);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -78,6 +87,7 @@ public class CollisionDetection : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // player runs into an enemy robot 
         if (gameObject.CompareTag("Player") && (other.CompareTag("Robot_Alpha") || other.CompareTag("Robot_Beta") || other.CompareTag("Burning_Skull"))) // if an object collides with the player the game is over or now the player loses a point
         {
            Debug.Log("Player hit by " + other.gameObject.name + " !");
@@ -141,31 +151,6 @@ public class CollisionDetection : MonoBehaviour
             gamemanager1.GameOver();
 
         }
-        /*
-       else if (other.CompareTag("Robot_Alpha"))
-        {
-            GameObject rubble = Instantiate(explosionprefab, gameObject.transform.position, gameObject.transform.rotation);
-
-            AudioSource1.PlayOneShot(robot_death, 1.0f);
-            Destroy(other.gameObject);
-            Destroy(rubble, 5);
-            Debug.Log("Robot_Alpha was hit by: " + gameObject.name);
-            
-            
-           
-        }
-        else if (other.CompareTag("Robot_Beta"))
-        {
-            GameObject rubble = Instantiate(explosionprefab, gameObject.transform.position, gameObject.transform.rotation);
-
-            AudioSource1.PlayOneShot(robot_death, 1.0f);
-            Destroy(other.gameObject);
-            Destroy(rubble, 5);
-            Debug.Log("Robot_Beta was hit by: " + gameObject.name);
-
-        }
-
-        */
 
         if (other.CompareTag("Laser") && gameObject.CompareTag("Robot_Alpha"))
         {
@@ -177,10 +162,43 @@ public class CollisionDetection : MonoBehaviour
             hits.directHit(); // removes 1 
             if (hits.getHits() == 0)
             {
+
+                MoveRobots mvr = gameObject.GetComponent<MoveRobots>();
+                
+
+                if (mvr == null)
+                {
+                    Debug.Log("mvr is null from GetComponent");
+                    mvr = gameObject.GetComponentInChildren<MoveRobots>();
+                }
+
+                if (mvr == null)
+                {
+                    Debug.Log("mvr is null from GetComponentInChildren");
+                    mvr = gameObject.GetComponentInParent<MoveRobots>();
+                }
+
+                if (mvr != null)
+                {
+                    Debug.Log("mvr is not null from GetComponentInParent");
+                    mvr.setForDestruction();
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    Debug.LogError("MoveRobots component not found on the game object or its hierarchy.");
+                    // Print the hierarchy for debugging
+                    PrintHierarchy(gameObject.transform);
+                }
+                mvr.setForDestruction();
+                
+               
                 Destroy(gameObject);
+                gamemanager1.UpdateScore(10);
+                gamemanager1.HitData("Mega Alpha AI Bot");
             }
             Destroy(other.gameObject);
-            gamemanager1.UpdateScore(10);
+            
 
         } else if (other.CompareTag("Laser") && gameObject.CompareTag("Robot_Beta"))
         {
@@ -189,8 +207,35 @@ public class CollisionDetection : MonoBehaviour
             GameObject rubble = Instantiate(rubblePrefab, gameObject.transform.position, gameObject.transform.rotation);
             Destroy(rubble, 5);
             //Destroy(explosion_inst, 5);
+            MoveRobots mvr = gameObject.GetComponent<MoveRobots>();
+
+            if (mvr == null)
+            {
+                mvr = gameObject.GetComponentInChildren<MoveRobots>();
+            }
+
+            if (mvr == null)
+            {
+                mvr = gameObject.GetComponentInParent<MoveRobots>();
+            }
+
+            if (mvr != null)
+            {
+                mvr.setForDestruction();
+                Destroy(gameObject);
+            }
+            else
+            {
+                Debug.LogError("MoveRobots component not found on the game object or its hierarchy.");
+                // Print the hierarchy for debugging
+                PrintHierarchy(gameObject.transform);
+            }
+            mvr.setForDestruction();
+
+            
             Destroy(gameObject);
             gamemanager1.UpdateScore(15);
+            gamemanager1.HitData("AI Robot Beta");
 
 
         }
@@ -201,18 +246,50 @@ public class CollisionDetection : MonoBehaviour
             GameObject rubble = Instantiate(rubblePrefab, gameObject.transform.position, gameObject.transform.rotation);
             Destroy(rubble, 5);
             //Destroy(explosion_inst, 5);
+            MoveRobots mvr = gameObject.GetComponent<MoveRobots>();
+
+            if (mvr == null)
+            {
+                mvr = gameObject.GetComponentInChildren<MoveRobots>();
+            }
+
+            if (mvr == null)
+            {
+                mvr = gameObject.GetComponentInParent<MoveRobots>();
+            }
+
+            if (mvr != null)
+            {
+                mvr.setForDestruction();
+                Destroy(gameObject);
+            }
+            else
+            {
+                Debug.LogError("MoveRobots component not found on the game object or its hierarchy.");
+                // Print the hierarchy for debugging
+                PrintHierarchy(gameObject.transform);
+            }
+            mvr.setForDestruction();
+
+           
             Destroy(gameObject);
             gamemanager1.UpdateScore(15);
+            gamemanager1.HitData("AI Roaming Shooter");
 
 
         }
         else if (other.CompareTag("Laser") && gameObject.CompareTag("Burning_Skull")) {
 
             Debug.Log("Burning Skull was hit by: " + other.name);
+            gamemanager1.HitData("Burning Skull");
+            gamemanager1.UpdateScore(20);
             GameObject rubble = Instantiate(fireworksPrefabs[0], gameObject.transform.position, gameObject.transform.rotation);
             Destroy(rubble, 5);
+            SkullLauncher sl = gameObject.GetComponent<SkullLauncher>();
+            sl.setForDestruction();
             Destroy(gameObject);
-            gamemanager1.UpdateScore(20);
+           
+            
 
         } else if (other.CompareTag("Robot_Weapon_1") && gameObject.CompareTag("Player"))
         {

@@ -24,8 +24,9 @@ public class SpawnManager : MonoBehaviour
     private float powerUpDurationPowerUp = 10f;
 
     public GameObject escapeRocket; // Reference to the prefab you want to instantiate
-    public float delayInSecondsRocket = 3f; // Delay before instantiation
+    private float delayInSecondsRocket = (60 * 1f); // Delay 1 minutes before instantiation
     private static bool objectInstantiatedRocket = false;
+    public AudioClip escape_rocket_entrance;
     private GameManager spawn_game_manager;
 
     // Start is called before the first frame update
@@ -100,10 +101,13 @@ public class SpawnManager : MonoBehaviour
     // This code spawns the escape rocket after a certain number of seconds have passed 
     public IEnumerator InstantiateSpaceshipAfterDelay()
     {
+        Debug.Log("[+] Going to instantiate the escape rocket in: " + delayInSecondsRocket + " seconds");
+        
         yield return new WaitForSeconds(delayInSecondsRocket);
 
         if (!objectInstantiatedRocket)
         {
+            ghettoblaster.PlayOneShot(escape_rocket_entrance, 1f);
             // Instantiate the object after the delay
             Vector3 pos = new Vector3(-2.5f, 2f, 5f);
             Instantiate(escapeRocket, pos, Quaternion.identity);

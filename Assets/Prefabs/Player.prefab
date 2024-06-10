@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5599355899538114176}
   - component: {fileID: 8650076810237958078}
   - component: {fileID: 615290703416800565}
-  - component: {fileID: 2562778457809509510}
+  - component: {fileID: 4449240273758073217}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -150,23 +150,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 5635195978217462685, guid: eb1bf5edbf65042c8b36bf01d880e626, type: 3}
+  - {fileID: 189306, guid: 4060d148fcf1c42c9a28bdabecaece01, type: 3}
+  - {fileID: 1833534958246786, guid: 603e08cc84d6342dea20caf5695beffc, type: 3}
+  - {fileID: 274368020309597107, guid: 5ae9ccb06ca6148539e6204c452bb4c1, type: 3}
   initialMaterial: {fileID: 2100000, guid: 8d0ea9337c8d24bf2b677b7a1c9a43ba, type: 2}
   alternateMaterial: {fileID: 2100000, guid: df44fe082f6954522ae0dc1b44e698c6, type: 2}
   spaceship: {fileID: 920605536824173880, guid: 0c148c04772d64733bc7f542c911927f, type: 3}
   projectileSpawnPoint: {fileID: 3375437184960866572}
-  sounds: {fileID: 0}
-  death: {fileID: 0}
-  gun_sound: {fileID: 0}
-  warp_sound: {fileID: 0}
-  gun_power_up: {fileID: 0}
-  health_power_up: {fileID: 0}
-  rocket_launch_sound: {fileID: 0}
-  liftoff: {fileID: 0}
+  sounds: {fileID: 6534499805370055510, guid: 867a8ec68c9364736b643c4b4d3791b9, type: 3}
+  death: {fileID: 8300000, guid: 74ea0a69dbbf0428f8ccb32a3689ec90, type: 3}
+  gun_sound: {fileID: 8300000, guid: 9c87f285d32fa4569b77ddf3a7e6df5e, type: 3}
+  warp_sound: {fileID: 8300000, guid: 256e94d7cc7d148fc9da89570896ac37, type: 3}
+  gun_power_up: {fileID: 8300000, guid: 37549b8b11fe14a5faf0e30d4a97f159, type: 3}
+  health_power_up: {fileID: 8300000, guid: 6f1637b41d770415d9d1e6a33a1db4c8, type: 3}
+  rocket_launch_sound: {fileID: 8300000, guid: 86e4d514bc68143ff95357c93ddf0525, type: 3}
+  liftoff: {fileID: 8300000, guid: eddcc9ea0924e49feaf6ff74de206ee8, type: 3}
   fireworks: []
---- !u!114 &2562778457809509510
+  fire: {fileID: 19800000, guid: 756d99540142b5e4a8d174e18a6310d9, type: 3}
+--- !u!114 &4449240273758073217
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,23 +177,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 636586164510297033}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 009c35c42a3a641ea98ef51dffcf393e, type: 3}
+  m_Script: {fileID: 11500000, guid: ec8a7b9a029d442a5b3f7545dfdfa59f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   explosionprefab: {fileID: 1220471986098533783, guid: fc3d86248f2044344b797fcdfb7b43ec, type: 3}
   rubblePrefab: {fileID: 191186, guid: 079954accd64b32419ec069129c81273, type: 3}
   fireworksPrefabs:
-  - {fileID: 1220471986098533783, guid: fc3d86248f2044344b797fcdfb7b43ec, type: 3}
-  - {fileID: 120410, guid: 6636b3078b0905e489f698a11b7a6b6b, type: 3}
+  - {fileID: 191186, guid: 079954accd64b32419ec069129c81273, type: 3}
   - {fileID: 100748, guid: cd4d7020429cde74db076ffa72495419, type: 3}
-  - {fileID: 110790, guid: 0f75f6db4a318f54382e0c98b2226db8, type: 3}
+  - {fileID: 120410, guid: 6636b3078b0905e489f698a11b7a6b6b, type: 3}
+  - {fileID: 191186, guid: 079954accd64b32419ec069129c81273, type: 3}
   player_death: {fileID: 8300000, guid: 74ea0a69dbbf0428f8ccb32a3689ec90, type: 3}
-  robot_death: {fileID: 0}
-  boom6: {fileID: 0}
-  AudioSource1: {fileID: 7149688318344095629, guid: 6addf5f628abb4ab4b9da51a2b07467e, type: 3}
+  robot_death: {fileID: 8300000, guid: ab50d2aab3a5c4b51996bae9d659b5a9, type: 3}
+  boom6: {fileID: 8300000, guid: af2b012ecebc34a91b65a0351bd46cc7, type: 3}
+  bump: {fileID: 8300000, guid: c48a2cb005c3740479e41b9df734b2ad, type: 3}
   game_over: 0
   spaceship: {fileID: 0}
-  EscapeRocket: {fileID: 0}
+  EscapeRocket: {fileID: 920605536824173880, guid: 0c148c04772d64733bc7f542c911927f, type: 3}
+  RobotEnemy2: {fileID: 5665004855376601022, guid: f5cd0f6c20ccd44e7b2e8f8284068429, type: 3}
 --- !u!1 &1770389913354196357
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,6 +297,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100014, guid: 32afb3201b7ffc943ae35ecab533eb32, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7805984802805022440}
+    - targetCorrespondingSourceObject: {fileID: 100014, guid: 32afb3201b7ffc943ae35ecab533eb32, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8740038474783916391}
   m_SourcePrefab: {fileID: 100100000, guid: 32afb3201b7ffc943ae35ecab533eb32, type: 3}
 --- !u!1 &7891638713430661710 stripped
 GameObject:
@@ -321,6 +327,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 14.147156, y: 6.4811277, z: 23.851658}
   m_Center: {x: 0, y: 3.7593193, z: 0}
+--- !u!114 &8740038474783916391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7891638713430661710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5846ae6ff11594b34b3f47d521959d5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7891638713431017070 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400014, guid: 32afb3201b7ffc943ae35ecab533eb32, type: 3}

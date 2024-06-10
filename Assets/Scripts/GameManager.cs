@@ -13,23 +13,31 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI gameOverText;
+    public TextMeshProUGUI hitText;
     public bool isGameActive;
-    public SpawnManager sm;
-    public Button restartButton;
+    private SpawnManager spawn_manager;
     public GameObject escape_rocket;
     private SpaceShipDeuxExMachina rocket_controls;
     public GameObject ground;
     private ScrollGround ground_control;
     public GameObject titleScreen;
     public bool game_over;
+    public GameObject WinScreen;
+    public GameObject TextFields;
+    public GameObject GameOverFields;
+
+    private AudioSource game_manager_radio;
+    public AudioClip cyborg_congratulates_player;
+
+    public PlayerController player;
 
     private float spawn_frequency = 5.5f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
-        
+        game_manager_radio = GameObject.Find("SoundObject").GetComponent<AudioSource>();
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -44,11 +52,11 @@ public class GameManager : MonoBehaviour
         UpdateScore(0);
         isGameActive = true;
         spawn_frequency /= difficulty;
-        sm = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+        spawn_manager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         rocket_controls = escape_rocket.GetComponentInChildren<SpaceShipDeuxExMachina>();
         ground_control = ground.GetComponent<ScrollGround>();
-        StartCoroutine(sm.SpawnGameObjects(spawn_frequency));
-        StartCoroutine(sm.InstantiateSpaceshipAfterDelay());
+        StartCoroutine(spawn_manager.SpawnGameObjects(spawn_frequency));
+        StartCoroutine(spawn_manager.InstantiateSpaceshipAfterDelay());
         titleScreen.gameObject.SetActive(false);
         DisplayHealth();
         
@@ -73,10 +81,14 @@ public class GameManager : MonoBehaviour
 
     public void UpdateHealth(int minusHealth)
     {
-        health -= minusHealth;
+        if (health > 0)
+        {
+            health -= minusHealth;
+        }
+
         healthText.text = "Health: " + health;
 
-        if (health < 0)
+        if (health == 0)
         {
             Debug.Log("Player ran out of health. Bad health. Game Over");
             GameOver();
@@ -92,19 +104,48 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void HitData(string name)
+    {
+        Debug.Log("[+] Got this hit data: " + name);
+        hitText.text = "Hit: " + name;
+        StartCoroutine(clearHitData(1f));
+    }
+
+    IEnumerator clearHitData(float delay)
+    {
+        
+        yield return new WaitForSeconds(delay);
+        hitText.text = "Hit: ";
+    }
+
     public void GameOver()
     {
-        gameOverText.gameObject.SetActive(true);
+
+        GameOverFields.SetActive(true);
         isGameActive = false;
-        sm.setRocketInst(false);
-        restartButton.gameObject.SetActive(true);
+        spawn_manager.setRocketInst(false);
         rocket_controls.setAcquired(false);
         game_over = true;
+        if (player != null)
+        {
+            player.explodePlayer();
+        }
     }
 
     public void RestartGame()
     {
         Debug.Log("Restart Button pressed");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void Winner()
+    {
+        WinScreen.SetActive(true);
+        game_over = true;
+        spawn_manager.setRocketInst(false);
+        isGameActive = false;
+        rocket_controls.setAcquired(false);
+        TextFields.SetActive(false);
+        game_manager_radio.PlayOneShot(cyborg_congratulates_player, 1f);
     }
 }

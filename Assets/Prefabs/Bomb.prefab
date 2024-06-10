@@ -262,11 +262,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 274368020309597107}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34e7b0d80f4ad49a98eedc876d92f7d7, type: 3}
+  m_Script: {fileID: 11500000, guid: e1b457e25556f4deeb6fd3d5a8db6774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 191186, guid: 079954accd64b32419ec069129c81273, type: 3}
-  bomb_sound: {fileID: 8300000, guid: 9c87f285d32fa4569b77ddf3a7e6df5e, type: 3}
+  bomb_sound: {fileID: 8300000, guid: ad1e7e92faf364edea5027d7c47ed724, type: 3}
   hit_sounds:
-  - {fileID: 8300000, guid: 2662a34448ad7451dbb0fcc4c936754a, type: 3}
   - {fileID: 8300000, guid: ab50d2aab3a5c4b51996bae9d659b5a9, type: 3}
+  - {fileID: 8300000, guid: 7c2de8e149d8346748fb31ed14cc7986, type: 3}

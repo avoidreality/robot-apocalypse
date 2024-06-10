@@ -40,8 +40,15 @@ public class PlayerController : MonoBehaviour
     public AudioClip liftoff;
     public GameObject[] fireworks;
     private CollisionDetection collisions;
+
     private GameManager player_gameManager;
+
     
+    float fireRate = 0.1f;
+    private float nextFireTime = 0.0f;
+
+    public ParticleSystem fire;
+
 
     // Start is called before the first frame update
     void Start()
@@ -110,14 +117,39 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    private IEnumerator FireContinuously()
+    {
+       
+
+        while (Input.GetKey(KeyCode.Space) && player_gameManager.isGameActive && current_gun.name == "FieldGunRound_01")
+        {
+            Instantiate(current_gun, projectileSpawnPoint.position, current_gun.transform.rotation);
+            sounds.PlayOneShot(gun_sound, 1.0f);
+            yield return new WaitForSeconds(fireRate);
+        }
+
+      
+    }
+
     void fly()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
             Debug.Log("Flying...");
             transform.Translate(Vector3.up * Time.deltaTime * 50);
+            fire.Play();
         }
       
+    }
+
+    void mainGun()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            Debug.Log("Switching back to main gun...");
+            gun_number = 0;
+            current_gun = projectilePrefab[gun_number];
+        }
     }
 
     void ground()
@@ -126,6 +158,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Flying towards ground");
             transform.Translate(Vector3.down * Time.deltaTime * 50);
+            fire.Stop();
         }
 
     }
@@ -133,10 +166,25 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (player_gameManager.isGameActive && current_gun.name == "FieldGunRound_01")
+        {
+            if (Input.GetKey(KeyCode.Space) && Time.time > nextFireTime && current_gun.name == "FieldGunRound_01")
+            {
+                nextFireTime = Time.time + fireRate;
+                StartCoroutine(FireContinuously());
+                Debug.Log("Machine gun activated!");
+            }
+            else if (Input.GetKeyUp(KeyCode.Space))
+            {
+                StopCoroutine(FireContinuously());
+            }
+        }
         crazyPlayer(); // moves the player
         fireWeapon(current_gun);
         fly();
         ground();
+        mainGun();
         
     }
 
@@ -160,6 +208,27 @@ public class PlayerController : MonoBehaviour
 
         }
 
+    }
+
+    public void explodePlayer()
+    {
+        Vector3 playerPosition = gameObject.transform.position;
+        Quaternion playerRotation = gameObject.transform.rotation;
+        Vector3 offset = new Vector3(Random.Range(-5.0f, 5.0f), 0, Random.Range(-5.0f, 5.0f));
+        Destroy(gameObject);
+
+
+
+        for (int i = 0; i < 4; i++)
+        {
+            GameObject fireworks_int = Instantiate(fireworks[i], playerPosition + offset, playerRotation);
+            Destroy(fireworks_int, 5);
+            Debug.Log("[+] Firework instance: " + i);
+            sounds.PlayOneShot(gun_sound, 1f);
+            sounds.PlayOneShot(death, 1f);
+
+
+        }
     }
 
    
@@ -194,6 +263,7 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject); // Destroy the warp 
             Debug.Log("Player found the warp!");
             sounds.PlayOneShot(warp_sound, 0.5f);
+            player_gameManager.UpdateScore(5);
             
 
             // Toggle between materials
@@ -223,27 +293,7 @@ public class PlayerController : MonoBehaviour
             rocket_launch();
         }
 
-       /*if (other.gameObject.CompareTag("spaceship") && collisions.game_over)
-        {
-            Debug.Log("Escape rocket ran into player!");
-            Destroy(other.gameObject);
-            Destroy(gameObject);
-
-            Vector3 playerPosition = gameObject.transform.position;
-            Quaternion playerRotation = gameObject.transform.rotation;
-            for (int i = 0; i < 4; i++)
-            {
-                GameObject fireworks_int = Instantiate(fireworks[i],  playerPosition, playerRotation);
-                Destroy(fireworks_int, 5);
-                Debug.Log("[+] Firework instance: " + i);
-
-
-            }
-
-
-
-        }
-       */
+      
 
         if (other.gameObject.CompareTag("Robot")) // This robot collision code does not execute. I don't know why exactly.
         {
@@ -258,21 +308,9 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.Log("'sounds' is null");
             }
-            Vector3 playerPosition = gameObject.transform.position;
-            Quaternion playerRotation = gameObject.transform.rotation;
-            Vector3 offset = new Vector3(Random.Range(-5.0f, 5.0f), 0, Random.Range(-5.0f, 5.0f));
-            Destroy(gameObject);
+           
+            explodePlayer();
 
-
-
-            for (int i = 0; i < 4; i++)
-            {
-                GameObject fireworks_int = Instantiate(fireworks[i], playerPosition + offset, playerRotation);
-                Destroy(fireworks_int, 5);
-                Debug.Log("[+] Firework instance: " + i);
-
-
-            }
         }
 
 

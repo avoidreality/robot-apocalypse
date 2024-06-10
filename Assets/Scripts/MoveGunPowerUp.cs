@@ -6,7 +6,7 @@ using System;
 public class MoveGunPowerUp : MonoBehaviour
 {
     public GameObject gunPowerUpPrefab;
-    private float spawnDelay = 5f;
+    private float spawnDelay = 10f;
     private float spawnAreaWidth = 24f;
     private float spawnAreaLength = 8f;
     private float powerUpDuration = 10f;
@@ -15,6 +15,7 @@ public class MoveGunPowerUp : MonoBehaviour
     void Start()
     {
         InvokeRepeating("SpawnPowerUp", spawnDelay, spawnDelay);
+        
     }
 
     // Update is called once per frame

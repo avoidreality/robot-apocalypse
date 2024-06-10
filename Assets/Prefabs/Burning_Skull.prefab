@@ -55,11 +55,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2015393209014489761}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4c4616a52afc406484e234d05efe98c, type: 3}
+  m_Script: {fileID: 11500000, guid: 46467a90e426e477889b6c8684b327e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 191186, guid: 079954accd64b32419ec069129c81273, type: 3}
-  explosion_sound: {fileID: 8300000, guid: 86e4d514bc68143ff95357c93ddf0525, type: 3}
+  explosionPrefab: {fileID: 100748, guid: cd4d7020429cde74db076ffa72495419, type: 3}
+  explosion_sound: {fileID: 8300000, guid: f479efddb5f7647338aacc9397bd395e, type: 3}
 --- !u!23 &703241253287076527
 MeshRenderer:
   m_ObjectHideFlags: 0
