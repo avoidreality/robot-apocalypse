@@ -24,7 +24,7 @@ public class SpawnManager : MonoBehaviour
     private float powerUpDurationPowerUp = 10f;
 
     public GameObject escapeRocket; // Reference to the prefab you want to instantiate
-    private float delayInSecondsRocket = (60 * 1f); // Delay 1 minutes before instantiation
+    private float delayInSecondsRocket = (60 * 10f); // Delay 10 minutes before instantiation
     private static bool objectInstantiatedRocket = false;
     public AudioClip escape_rocket_entrance;
     private GameManager spawn_game_manager;

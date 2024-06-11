@@ -56,11 +56,11 @@ public class SkullLauncher : MonoBehaviour
     {
         if (!to_be_destroyed)
         {
-            if (transform.position.z < -50)
+            if (transform.position.z < -20)
             {
                 Destroy(gameObject);
-                // gamemanager.UpdateHealth(1); // remove 1 health if the burning skull flies past the player
-                // Debug.Log(gameObject.name + " got passed player. Subtracting 1 from health");
+                gamemanager.UpdateHealth(1); // remove 1 health if the burning skull flies past the player
+                Debug.Log(gameObject.name + " got passed player. Subtracting 1 from health");
 
             }
         }
