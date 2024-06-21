@@ -3644,6 +3644,8 @@ MonoBehaviour:
   GameOverFields: {fileID: 1095026160}
   cyborg_congratulates_player: {fileID: 8300000, guid: 67233fb3ef7334d5b82d13718d367cfd, type: 3}
   player: {fileID: 0}
+  onScreenControlsToggle: {fileID: 1661642995}
+  onScreenControlsCanvas: {fileID: 361099000}
 --- !u!4 &1464604703
 Transform:
   m_ObjectHideFlags: 0
@@ -4206,7 +4208,7 @@ GameObject:
   - component: {fileID: 1661642994}
   - component: {fileID: 1661642995}
   m_Layer: 5
-  m_Name: ScreenControlsToggle
+  m_Name: OnScreenControlsToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

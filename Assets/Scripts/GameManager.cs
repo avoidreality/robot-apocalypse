@@ -33,11 +33,23 @@ public class GameManager : MonoBehaviour
 
     private float spawn_frequency = 5.5f;
 
+    public Toggle onScreenControlsToggle; // Reference to the Toggle UI element
+    public GameObject onScreenControlsCanvas; // Reference to the on-screen controls Canvas 
+
     // Start is called before the first frame update
     void Start()
     {
         game_manager_radio = GameObject.Find("SoundObject").GetComponent<AudioSource>();
         player = GameObject.Find("Player").GetComponent<PlayerController>();
+
+        // Initialize the on-screen controls based on the toggle's value
+        onScreenControlsCanvas.SetActive(onScreenControlsToggle.isOn);
+
+        // Add listener to the toggle
+        onScreenControlsToggle.onValueChanged.AddListener(delegate
+        {
+            ToggleOnScreenControls(onScreenControlsToggle);
+        });
     }
 
     // Update is called once per frame
@@ -147,5 +159,11 @@ public class GameManager : MonoBehaviour
         rocket_controls.setAcquired(false);
         TextFields.SetActive(false);
         game_manager_radio.PlayOneShot(cyborg_congratulates_player, 1f);
+    }
+
+    private void ToggleOnScreenControls(Toggle toggle)
+    {
+        // Activate or deactivate the on-screen controls canvas based on the toggle's value
+        onScreenControlsCanvas.SetActive(toggle.isOn);
     }
 }
