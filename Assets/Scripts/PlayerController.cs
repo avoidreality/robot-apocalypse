@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -49,6 +50,89 @@ public class PlayerController : MonoBehaviour
 
     public ParticleSystem fire;
 
+    private Vector2 moveInput; // For the touch-screen controls
+    private VirtualJoystick virtualJoystick; // For the touch-screen controls
+    private GameInputActions inputActions; // For the touch-screen controls
+    private bool isFiring = false; // for the touch-screen 'fire' button
+   
+    
+
+    // For the touch-screen controls
+    private void Awake()
+    {
+        inputActions = new GameInputActions();
+        virtualJoystick = FindObjectOfType<VirtualJoystick>();
+        playerRb = GetComponent<Rigidbody>();
+    }
+
+    // For the touch-screen controls
+    private void OnEnable()
+    {
+        inputActions.Gameplay.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
+        inputActions.Gameplay.Move.canceled += ctx => moveInput = Vector2.zero;
+        inputActions.Gameplay.Fire.performed += ctx => Fire();
+        inputActions.Gameplay.Fire.canceled += ctx => StopFiring();
+        inputActions.Gameplay.Fly.performed += ctx => Flying();
+        inputActions.Gameplay.Descent.performed += ctx => Descending();
+        inputActions.Gameplay.Main.performed += ctx => switchToMainGun();
+       
+        inputActions.Enable();
+    }
+
+    // For the touch-screen controls
+    private void OnDisable()
+    {
+        inputActions.Gameplay.Move.performed -= ctx => moveInput = ctx.ReadValue<Vector2>();
+        inputActions.Gameplay.Move.canceled -= ctx => moveInput = Vector2.zero;
+        inputActions.Gameplay.Fire.performed -= ctx => Fire();
+        inputActions.Gameplay.Fire.canceled -= ctx => StopFiring();
+        
+       
+        inputActions.Disable();
+    }
+
+    // for touch-screen
+    private void switchToMainGun()
+    {
+        Debug.Log("Touch screen switching to main gun...");
+        gun_number = 0;
+        current_gun = projectilePrefab[gun_number];
+    }
+
+    private void Flying()
+    {
+        Debug.Log("On screen button flying pressed");
+        transform.Translate(Vector3.up * Time.deltaTime * 50);
+        fire.Play();
+        
+    }
+
+    private void Descending()
+    {
+        Debug.Log("On screen Descent Button pressed");
+        transform.Translate(Vector3.down * Time.deltaTime * 50);
+        fire.Stop();
+    }
+
+    private void Fire()
+    {
+        if (player_gameManager.isGameActive)
+        {
+            Debug.Log("Fire Button Pressed");
+            isFiring = true;
+
+            // Launch a projectile from the player - This currently does not work
+            Instantiate(current_gun, projectileSpawnPoint.position, current_gun.transform.rotation);
+
+            sounds.PlayOneShot(gun_sound, 1.0f);
+            
+        }
+    }
+
+    private void StopFiring()
+    {
+        isFiring = false;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -86,16 +170,25 @@ public class PlayerController : MonoBehaviour
 
     void crazyPlayer()
     {
-        // Get AD keys or left and right arrow keys
-        float horizontalInput = Input.GetAxis("Horizontal");
+        if (playerRb != null)
+        {
+            // Get joystick input
+            Vector2 joystickInput = virtualJoystick.GetInput();
 
-        // Get WS keys or up and down arrow keys
-        float forwardInput = Input.GetAxis("Vertical");
+            // Get AD keys or left and right arrow keys - keyboard input
+            float horizontalInput = Input.GetAxis("Horizontal");
 
-        
+            // Get WS keys or up and down arrow keys - keyboard input
+            float forwardInput = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(horizontalInput, gameObject.transform.position.y, forwardInput); // get the xyz coordinates
-        playerRb.AddForce(movement * speed, ForceMode.Acceleration); // use this method to move the player around the screen
+            // Combine keyboard and joystic inputs
+            Vector3 combinedInput = new Vector3(horizontalInput + joystickInput.x, 0, forwardInput + joystickInput.y);
+            playerRb.AddForce(combinedInput * speed, ForceMode.Acceleration); // Move the player with the combined inputs
+
+            // Previous way to move the player with just keyboard input
+            //Vector3 movement = new Vector3(horizontalInput, gameObject.transform.position.y, forwardInput); // get the xyz coordinates
+            //playerRb.AddForce(movement * speed, ForceMode.Acceleration); // use this method to move the player around the screen
+        }
 
         
     }
@@ -121,7 +214,7 @@ public class PlayerController : MonoBehaviour
     {
        
 
-        while (Input.GetKey(KeyCode.Space) && player_gameManager.isGameActive && current_gun.name == "FieldGunRound_01")
+        while ((Input.GetKey(KeyCode.Space) || isFiring) && player_gameManager.isGameActive && current_gun.name == "FieldGunRound_01")
         {
             Instantiate(current_gun, projectileSpawnPoint.position, current_gun.transform.rotation);
             sounds.PlayOneShot(gun_sound, 1.0f);
@@ -169,7 +262,7 @@ public class PlayerController : MonoBehaviour
 
         if (player_gameManager.isGameActive && current_gun.name == "FieldGunRound_01")
         {
-            if (Input.GetKey(KeyCode.Space) && Time.time > nextFireTime && current_gun.name == "FieldGunRound_01")
+            if ((Input.GetKey(KeyCode.Space) || isFiring) && Time.time > nextFireTime && current_gun.name == "FieldGunRound_01")
             {
                 nextFireTime = Time.time + fireRate;
                 StartCoroutine(FireContinuously());
@@ -180,11 +273,14 @@ public class PlayerController : MonoBehaviour
                 StopCoroutine(FireContinuously());
             }
         }
-        crazyPlayer(); // moves the player
-        fireWeapon(current_gun);
-        fly();
-        ground();
-        mainGun();
+        if (playerRb != null)
+        {
+            crazyPlayer(); // moves the player
+            fireWeapon(current_gun);
+            fly();
+            ground();
+            mainGun();
+        }
         
     }
 
@@ -212,22 +308,25 @@ public class PlayerController : MonoBehaviour
 
     public void explodePlayer()
     {
-        Vector3 playerPosition = gameObject.transform.position;
-        Quaternion playerRotation = gameObject.transform.rotation;
-        Vector3 offset = new Vector3(Random.Range(-5.0f, 5.0f), 0, Random.Range(-5.0f, 5.0f));
-        Destroy(gameObject);
-
-
-
-        for (int i = 0; i < 4; i++)
+        if (gameObject != null)
         {
-            GameObject fireworks_int = Instantiate(fireworks[i], playerPosition + offset, playerRotation);
-            Destroy(fireworks_int, 5);
-            Debug.Log("[+] Firework instance: " + i);
-            sounds.PlayOneShot(gun_sound, 1f);
-            sounds.PlayOneShot(death, 1f);
+            Vector3 playerPosition = gameObject.transform.position;
+            Quaternion playerRotation = gameObject.transform.rotation;
+            Vector3 offset = new Vector3(Random.Range(-5.0f, 5.0f), 0, Random.Range(-5.0f, 5.0f));
+            Destroy(gameObject);
 
 
+
+            for (int i = 0; i < 4; i++)
+            {
+                GameObject fireworks_int = Instantiate(fireworks[i], playerPosition + offset, playerRotation);
+                Destroy(fireworks_int, 5);
+                Debug.Log("[+] Firework instance: " + i);
+                sounds.PlayOneShot(gun_sound, 1f);
+                sounds.PlayOneShot(death, 1f);
+
+
+            }
         }
     }
 

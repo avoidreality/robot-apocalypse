@@ -44,7 +44,7 @@ public class DropBombs : MonoBehaviour
     {
         Debug.Log("Bomb collided with something");
         Debug.Log(gameObject + " collided with " + other.gameObject.name);
-        if (other.gameObject.name == "Fighter_Jet04")
+        if (other.gameObject.name == "Fighter_Jet04" || other.gameObject.name ==  "Bomb(Clone)")
         {
             return;  // dont' explode yet 
         }

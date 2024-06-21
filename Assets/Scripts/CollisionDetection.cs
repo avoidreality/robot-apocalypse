@@ -88,7 +88,7 @@ public class CollisionDetection : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // player runs into an enemy robot 
-        if (gameObject.CompareTag("Player") && (other.CompareTag("Robot_Alpha") || other.CompareTag("Robot_Beta") || other.CompareTag("Burning_Skull"))) // if an object collides with the player the game is over or now the player loses a point
+        if (gameObject.CompareTag("Player") && (other.CompareTag("Robot_Alpha") || other.CompareTag("Robot_Beta") || other.CompareTag("Robot_Shooter") || other.CompareTag("Burning_Skull"))) // if an object collides with the player the game is over or now the player loses a point
         {
            Debug.Log("Player hit by " + other.gameObject.name + " !");
             gamemanager1.UpdateHealth(1);
