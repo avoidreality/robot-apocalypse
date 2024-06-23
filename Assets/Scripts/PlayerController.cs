@@ -204,7 +204,7 @@ public class PlayerController : MonoBehaviour
                 Instantiate(gun_type, projectileSpawnPoint.position, gun_type.transform.rotation);
 
                 sounds.PlayOneShot(gun_sound, 1.0f);
-                //Debug.Log("Spacebar pressed...");
+                Debug.Log("Spacebar pressed...firing!");
             }
         }
         
